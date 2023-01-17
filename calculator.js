@@ -1,3 +1,16 @@
+const display = document.querySelector('#display');
+const numberbtn = document.querySelectorAll('.numbtn');
+const addbtn = document.querySelector('#addition');
+
+let firstVari;   
+
+// const subbtn = document.querySelector('#subtract');
+// const multbtn = document.querySelector('#multiply');
+// const divbtn = document.querySelector('#divide');
+// const clearbtn = document.querySelector('#clear');
+// const equalbtn = document.querySelector('#equals');
+
+
 function add(x, y) {
     return x + y;
 };
@@ -31,4 +44,19 @@ function operate(operator, x, y) {
         return div(x, y);
     };
 };
+
+addbtn.addEventListener("click", () => {
+    console.log('clicked!');
+});
+
+numberbtn.forEach((btn) => {
+    btn.addEventListener("click", firstVariable);
+})
+
+ function firstVariable() {
+      display.textContent += this.textContent;
+      console.log(this.textContent);
+      
+    }
+
 
