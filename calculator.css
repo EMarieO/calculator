@@ -4,23 +4,26 @@ body {
 }
 
 .container {
-    
-    background-color: rgb(145, 145, 243);
-    border-radius: 25px;
-    width: 300px;
-    display: flex;
-    flex-flow: row wrap;
-    padding: 15px 15px;
+    background-color: rgb(55, 2, 99);
+    border-radius: 20px;
+    width: 330px;
+    padding: 10px ;
+    border: solid black;
    
 }
 
 #display {
-    width: 300px;
-    height: 40px;
+    
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-right: 15px;
+    margin-bottom: 10px;
+    font-size: 40px;
+    background-color: white;
 }
 
 #display:empty:before {
@@ -29,10 +32,43 @@ body {
 
 button {
     width: 75px;
-    height: 50px;
-    border-radius: 20px;
-    background-color: rgb(228, 228, 248);
-    border: none;
+    height: 75px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 2px;
+    align-items: stretch;
+}
+
+.numbBtn {
+    background-color: rgb(230, 204, 255);
+    font-size: 25px;
+}
+
+button:hover {
+    background-color:rgb(55, 2, 99);
+    border-color:rgb(221, 127, 3);
+    color: rgb(255, 255, 255);
+}
+
+#addition, #divide, #subtract, #multiply {
+    background-color:rgb(221, 127, 3);
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+}
+
+#addition:hover, #divide:hover, #subtract:hover, #multiply:hover {
+    background-color: rgb(71, 42, 95);
+    border-color: rgb(221, 127, 3);
+    color: rgb(255, 255, 255);
     
-    
+}
+
+#clear, #equals {
+    font-size: 30px;
+}
+
+#clear:hover, #equals:hover {
+    background-color:rgb(221, 127, 3);
+    border-color: rgb(0, 0, 0);
+    color: white;
 }
