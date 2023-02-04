@@ -1,15 +1,12 @@
 const display = document.querySelector('#display');
-const numberbtn = document.querySelectorAll('.numbtn');
-const addbtn = document.querySelector('#addition');
+const numberBtn = document.querySelectorAll('.numbBtn');
+const operatorBtn = document.querySelectorAll('.operator');
+const clearBtn = document.querySelector('#clear');
+const equalBtn = document.querySelector('#equals');
 
-let firstVari;   
-
-// const subbtn = document.querySelector('#subtract');
-// const multbtn = document.querySelector('#multiply');
-// const divbtn = document.querySelector('#divide');
-// const clearbtn = document.querySelector('#clear');
-// const equalbtn = document.querySelector('#equals');
-
+let current = '';
+let previous = '';
+let operator = '';
 
 function add(x, y) {
     return x + y;
@@ -24,39 +21,77 @@ function mult(x, y) {
 };
 
 function div(x, y) {
-    return x / y;
+    if (x === 0) {
+        return "BeReal";
+    }
+    return y / x;
 };
 
 
-function operate(operator, x, y) {
+function operate() {
+    x = parseFloat(current);
+    y = parseFloat(previous);
     
-    
-    if (operator ==  '+') {
-        return add(x, y);
+    if (operator ===  '+') {
+        current = add(x, y);
     }
-    else if (operator == '-') {
-        return subt(x, y);
+    else if (operator === '-') {
+        current = subt(y, x);
     }
-    else if (operator == '*') {
-        return mult(x, y);
+    else if (operator === '*') {
+        current = mult(x, y);
     }
-    else if (operator == '/') {
-        return div(x, y);
+    else if (operator === '/') {
+        current = div(x, y);
     };
+    display.textContent = current;
+    console.log(current);
 };
 
-addbtn.addEventListener("click", () => {
-    console.log('clicked!');
+operatorBtn.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        getOp(e.target.textContent);
+    });
 });
 
-numberbtn.forEach((btn) => {
-    btn.addEventListener("click", firstVariable);
-})
 
- function firstVariable() {
-      display.textContent += this.textContent;
-      console.log(this.textContent);
-      
+numberBtn.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        getNum(e.target.textContent);
+    });
+});
+
+clearBtn.addEventListener("click", clearButton);
+
+equalBtn.addEventListener("click", operate);
+
+
+function clearButton() {
+    current = '';
+    previous = '';
+    display.textContent = '';
+    console.log('clear!');
+}
+
+function getNum(number) {
+    if (display.textContent === "BeReal") {
+        clearButton();
     }
+    current += number;
+    display.textContent = current;
+    console.log(current);
+}
 
-
+function getOp(operatorVal) {
+    if (display.textContent === "BeReal") {
+        clearButton();
+    }
+    if (previous && current !== '') {
+        operate();
+    }
+    operator = operatorVal;
+    console.log(operator);
+    previous = current;
+    display.textContent = previous;
+    current = '';
+}
