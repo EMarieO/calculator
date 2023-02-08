@@ -3,10 +3,13 @@ const numberBtn = document.querySelectorAll('.numbBtn');
 const operatorBtn = document.querySelectorAll('.operator');
 const clearBtn = document.querySelector('#clear');
 const equalBtn = document.querySelector('#equals');
+const backspace = document.querySelector('#backspace');
+const decimal = document.querySelector('#decimal');
 
 let current = '';
 let previous = '';
 let operator = '';
+
 
 function add(x, y) {
     return x + y;
@@ -44,9 +47,16 @@ function operate() {
     else if (operator === '/') {
         current = div(x, y);
     };
-    display.textContent = current;
+
+roundToTwo(current);
+ //   display.textContent = current;
     console.log(current);
 };
+
+function roundToTwo(num) {
+    display.textContent = +(Math.round(num + "e+2")  + "e-2");
+    console.log(current);
+}
 
 operatorBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -62,9 +72,9 @@ numberBtn.forEach((btn) => {
 });
 
 clearBtn.addEventListener("click", clearButton);
-
 equalBtn.addEventListener("click", operate);
-
+backspace.addEventListener("click", backspaceB);
+// decimal.addEventListener("click", decimalB);
 
 function clearButton() {
     current = '';
@@ -77,6 +87,13 @@ function getNum(number) {
     if (display.textContent === "BeReal") {
         clearButton();
     }
+    if (current.includes('.')) {
+        decimal.disabled = true;
+    } else {
+        decimal.disabled = false;
+    }
+
+    
     current += number;
     display.textContent = current;
     console.log(current);
@@ -94,4 +111,12 @@ function getOp(operatorVal) {
     previous = current;
     display.textContent = previous;
     current = '';
+    decimal.disabled = false;
 }
+
+function backspaceB() {
+    current = current.substring(0, current.length - 1);
+    display.textContent = current;
+    console.log(current);
+}
+
