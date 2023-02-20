@@ -1,3 +1,4 @@
+const calculator = document.querySelector('.container');
 const display = document.querySelector('#display');
 const numberBtn = document.querySelectorAll('.numbBtn');
 const operatorBtn = document.querySelectorAll('.operator');
@@ -9,7 +10,8 @@ const decimal = document.querySelector('#decimal');
 let current = '';
 let previous = '';
 let operator = '';
-
+let total = '';
+let currentOperator = false;
 
 function add(x, y) {
     return x + y;
@@ -24,39 +26,36 @@ function mult(x, y) {
 };
 
 function div(x, y) {
-    if (x === 0) {
-        return "BeReal";
-    }
-    return y / x;
+    if (y === 0) {
+        return "No";
+        
+    } else {
+    return x / y;
+  }
 };
 
-
 function operate() {
-    x = parseFloat(current);
-    y = parseFloat(previous);
+    y = parseFloat(current);
+    x = parseFloat(previous);
     
     if (operator ===  '+') {
-        current = add(x, y);
+        current = (add(x, y)).toFixed(8);
     }
     else if (operator === '-') {
-        current = subt(y, x);
+        current = subt(x, y);
     }
     else if (operator === '*') {
-        current = mult(x, y);
+        current = (mult(x, y)).toFixed(8);
     }
     else if (operator === '/') {
         current = div(x, y);
-    };
-
+    } 
 roundToTwo(current);
- //   display.textContent = current;
-    console.log(current);
+console.log(current);
+previous = '';
+operator = '';
+currentOperator = false;
 };
-
-function roundToTwo(num) {
-    display.textContent = +(Math.round(num + "e+2")  + "e-2");
-    console.log(current);
-}
 
 operatorBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -64,47 +63,65 @@ operatorBtn.forEach((btn) => {
     });
 });
 
-
 numberBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
         getNum(e.target.textContent);
     });
 });
 
+
+window.addEventListener("keydown", keyboard);
 clearBtn.addEventListener("click", clearButton);
 equalBtn.addEventListener("click", operate);
 backspace.addEventListener("click", backspaceB);
-// decimal.addEventListener("click", decimalB);
+decimal.addEventListener("click", addDecimal);
+
+function roundToTwo(num) {
+    display.textContent = +(Math.round(num + "e+2")  + "e-2");
+}
 
 function clearButton() {
+    operator = '';
     current = '';
     previous = '';
+    total = '';
     display.textContent = '';
+    decimal.disabled = false;
     console.log('clear!');
 }
 
 function getNum(number) {
-    if (display.textContent === "BeReal") {
-        clearButton();
+    // if (display.textContent === "No" || Number.isNaN(current)) {
+    //     clearButton();
+    // }
+    if (current.length > 10) {
+        return;
     }
-    if (current.includes('.')) {
-        decimal.disabled = true;
-    } else {
-        decimal.disabled = false;
-    }
-
-    
     current += number;
     display.textContent = current;
     console.log(current);
 }
 
-function getOp(operatorVal) {
-    if (display.textContent === "BeReal") {
+function addDecimal() {
+    if (current.includes('.')) {
+        decimal.disabled = true;
+    } else {
+        display.textContent += ".";
+        current += ".";
+        decimal.disabled = false;
+    }  
+}
+
+function getOp(operatorVal) { 
+    if (display.textContent === "No" || Number.isNaN(current)) {
         clearButton();
+    } 
+    if (currentOperator = true && !current) {
+        return;
     }
-    if (previous && current !== '') {
+    if (previous && current) {
         operate();
+        
     }
     operator = operatorVal;
     console.log(operator);
@@ -112,6 +129,7 @@ function getOp(operatorVal) {
     display.textContent = previous;
     current = '';
     decimal.disabled = false;
+    currentOperator = true;
 }
 
 function backspaceB() {
@@ -120,3 +138,23 @@ function backspaceB() {
     console.log(current);
 }
 
+function keyboard(e) {
+    if (e.key >= 0 && e.key <= 9) {
+        getNum(e.key);
+ } 
+    else if (e.key === ".") {
+        addDecimal();
+ }
+    else if (e.key === "Enter") {
+         operate();
+ }
+    else if (e.key === "Backspace") {
+        backspaceB();
+ }
+    else if (e.key === "Escape") {
+        clearButton();
+ }
+    else if (e.key === "+" || "-" || "/" || "*") {
+        getOp(e.key);     
+ }
+}
