@@ -35,22 +35,23 @@ function div(x, y) {
 };
 
 function operate() {
-    y = parseFloat(current);
-    x = parseFloat(previous);
+    y = Number.parseFloat(current);
+    x = Number.parseFloat(previous);
     
     if (operator ===  '+') {
-        current = (add(x, y)).toFixed(8);
+        current = add(x, y);
     }
     else if (operator === '-') {
         current = subt(x, y);
     }
     else if (operator === '*') {
-        current = (mult(x, y)).toFixed(8);
+        current = mult(x, y);
     }
     else if (operator === '/') {
         current = div(x, y);
     } 
-roundToTwo(current);
+// roundToTwo(current);
+display.textContent = String(Math.round(current * 1000)/1000);
 console.log(current);
 previous = '';
 operator = '';
@@ -76,9 +77,9 @@ equalBtn.addEventListener("click", operate);
 backspace.addEventListener("click", backspaceB);
 decimal.addEventListener("click", addDecimal);
 
-function roundToTwo(num) {
-    display.textContent = +(Math.round(num + "e+2")  + "e-2");
-}
+// function roundToTwo(num) {
+//     display.textContent = +(Math.round(num + "e+2")  + "e-2");
+// }
 
 function clearButton() {
     operator = '';
@@ -91,12 +92,12 @@ function clearButton() {
 }
 
 function getNum(number) {
-    // if (display.textContent === "No" || Number.isNaN(current)) {
-    //     clearButton();
-    // }
-    if (current.length > 10) {
-        return;
-    }
+// if (display.textContent === "No" || Number.isNaN(current)) {
+//     clearButton();
+// }
+   if (current.length > 10) {
+       return;
+  }
     current += number;
     display.textContent = current;
     console.log(current);
@@ -113,7 +114,7 @@ function addDecimal() {
 }
 
 function getOp(operatorVal) { 
-    if (display.textContent === "No" || Number.isNaN(current)) {
+    if (display.textContent === "No") {
         clearButton();
     } 
     if (currentOperator = true && !current) {
@@ -139,6 +140,7 @@ function backspaceB() {
 }
 
 function keyboard(e) {
+    
     if (e.key >= 0 && e.key <= 9) {
         getNum(e.key);
  } 
@@ -146,6 +148,7 @@ function keyboard(e) {
         addDecimal();
  }
     else if (e.key === "Enter") {
+        e.preventDefault();
          operate();
  }
     else if (e.key === "Backspace") {
