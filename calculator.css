@@ -17,6 +17,9 @@ body {
 
 #display {
     pointer-events: none;
+    /* word-wrap: break-word;
+    word-break: break-all; */
+    overflow: hidden;
     height: 80px;
     display: flex;
     align-items: center;
@@ -24,6 +27,7 @@ body {
     border: 1px solid black;
     border-radius: 10px;
     padding-right: 15px;
+    padding-left: 15px;
     margin-bottom: 10px;
     font-size: 40px;
     background-color: white;
