@@ -50,7 +50,7 @@ function operate() {
     } 
 
 checkResult(current);
-display.textContent = current;
+display.textContent = current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 console.log(current);
 previous = '';
 operator = '';
@@ -103,11 +103,14 @@ function getNum(number) {
        return;
     }
     current += number;
-    display.textContent = current;
+    display.textContent = current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     console.log(current);
 }
 
 function addDecimal() {
+    if (current === '') {
+        current += '0.';
+    }
     if (current.includes('.')) {
         decimal.disabled = true;
     } else {
@@ -130,7 +133,7 @@ function getOp(operatorVal) {
     operator = operatorVal;
     console.log(operator);
     previous = current;
-    display.textContent = previous;
+    display.textContent = previous.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     current = '';
     decimal.disabled = false;
     currentOperator = true;
