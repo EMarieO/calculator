@@ -4,9 +4,9 @@ body {
 }
 
 .container {
-    /* display: block;
+    display: block;
     margin-left: auto;
-    margin-right: auto; */
+    margin-right: auto;
     background-color: rgb(180, 180, 180);
     border-radius: 20px;
     width: 330px;
@@ -17,8 +17,6 @@ body {
 
 #display {
     pointer-events: none;
-    /* word-wrap: break-word;
-    word-break: break-all; */
     overflow: hidden;
     height: 80px;
     display: flex;
@@ -53,8 +51,7 @@ button {
 
 button:hover {
     border-color:rgb(221, 127, 3);
-    color: rgb(44, 0, 70);
-    
+    color: rgb(44, 0, 70);   
 }
 
 #addition, #divide, #subtract, #multiply {
@@ -66,7 +63,6 @@ button:hover {
 #addition:hover, #divide:hover, #subtract:hover, #multiply:hover {
     border-color: rgb(221, 127, 3);
     color: rgb(255, 255, 255);
-    
 }
 
 #clear, #backspace {
