@@ -70,7 +70,6 @@ numberBtn.forEach((btn) => {
     })
 })
 
-
 window.addEventListener('keydown', keyboard)
 clearBtn.addEventListener('click', clearButton)
 equalBtn.addEventListener('click', operate)
@@ -103,7 +102,7 @@ function getNum(number) {
        return;
     }
     current += number;
-    display.textContent = current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    display.textContent = current.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     console.log(current);
 }
 
@@ -133,7 +132,7 @@ function getOp(operatorVal) {
     operator = operatorVal;
     console.log(operator);
     previous = current;
-    display.textContent = previous.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    display.textContent = previous.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     current = '';
     decimal.disabled = false;
     currentOperator = true;
