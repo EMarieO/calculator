@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    display: block;
+    /* display: block; */
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(180, 180, 180);
@@ -19,23 +19,23 @@ body {
     width: 330px;
     padding: 10px ;
     border: solid black;
-   
+    text-align:center;
 }
 
 #display {
     pointer-events: none;
     overflow: hidden;
-    height: 80px;
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    border: 1px solid black;
     border-radius: 10px;
     padding-right: 15px;
     padding-left: 15px;
-    margin-bottom: 10px;
-    font-size: 40px;
+    margin-bottom: 8px;
+    border: 1px solid black;
     background-color: white;
+    font-size: 40px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -49,7 +49,7 @@ button {
     border-radius: 10px;
     border: 1px solid rgb(0, 0, 0);
     margin: 2px;
-    align-items: stretch;
+    
 }
 
 .numbBtn {
@@ -57,31 +57,33 @@ button {
     font-size: 25px;
 }
 
-button:hover {
-    border-color:rgb(221, 127, 3);
-    color: rgb(44, 0, 70);   
+#clear, #backspace {
+    font-size: 30px;
+    width: 155px;
+    height: 60px;
+
 }
 
-#addition, #divide, #subtract, #multiply {
+.operator {
     background-color:rgb(209, 167, 113);
     color: rgb(0, 0, 0);
     font-size: 30px;
 }
 
-#addition:hover, #divide:hover, #subtract:hover, #multiply:hover {
-    border-color: rgb(221, 127, 3);
-    color: rgb(255, 255, 255);
-}
-
-#clear, #backspace {
-    font-size: 30px;
-    width: 159px;
-    height: 60px;
-}
-
 #decimal, #equals {
     font-size: 30px;
     background-color:rgb(255, 255, 255);
+}
+
+
+button:hover {
+    border-color:rgb(221, 127, 3);
+    color: rgb(44, 0, 70);   
+}
+
+#addition:hover, #divide:hover, #subtract:hover, #multiply:hover {
+    border-color: rgb(221, 127, 3);
+    color: rgb(255, 255, 255);
 }
 
 #clear:hover, #equals:hover, #decimal:hover, #backspace:hover {
