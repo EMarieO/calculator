@@ -37,21 +37,22 @@ function operate() {
     x = Number.parseFloat(previous);
     
     if (operator ===  '+') {
-        current = add(x, y);
+        total = add(x, y);
     }
     else if (operator === '-') {
-        current = subt(x, y);
+        total = subt(x, y);
     }
     else if (operator === '*') {
-        current = mult(x, y);
+        total = mult(x, y);
     }
     else if (operator === '/') {
-        current = div(x, y);
+        total = div(x, y);
     } 
 
-checkResult(current);
-display.textContent = current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-console.log(current);
+checkResult(total);
+display.textContent = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+console.log(total);
+current = '';
 previous = '';
 operator = '';
 currentOperator = false;
@@ -77,9 +78,9 @@ backspace.addEventListener('click', backspaceB)
 decimal.addEventListener('click', addDecimal)
 
 function checkResult() {
-    if(current.toString().indexOf('.')) {
-        if(current.toString().length > 12) {
-        current = current.toPrecision(2);
+    if(total.toString().indexOf('.')) {
+        if(total.toString().length > 12) {
+            total = total.toPrecision(2);
     }
   }
 }
@@ -95,7 +96,7 @@ function clearButton() {
 }
 
 function getNum(number) {
-   if (display.textContent === 'No') {
+   if (display.textContent === 'No' || total !== '') {
     clearButton();
     }
    if (current.length > 10) {
@@ -123,11 +124,15 @@ function getOp(operatorVal) {
     if (display.textContent === 'No') {
         clearButton();
     } 
-    if (currentOperator = true && !current) {
+    if (currentOperator === true && !current) {
         return;
     }
     if (previous && current) {
         operate();   
+    }
+    if (total) {
+        current = total;
+        total = ''; 
     }
     operator = operatorVal;
     console.log(operator);
@@ -150,14 +155,14 @@ function keyboard(e) {
         getNum(e.key);
     } else if (e.key === '.') {
         addDecimal();
-    } else if (e.key === 'Enter') {
+    } else if (e.key === 'Enter' || e.key === '=') {
         e.preventDefault();
          operate();
     } else if (e.key === 'Backspace') {
         backspaceB();
     } else if (e.key === 'Escape') {
         clearButton();
-    } else if (e.key === '+' || '-' || '/' || '*') {
+    } else if (e.key === '+' || e.key === '-' || e.key === '/' || e.key === '*') {
         getOp(e.key);     
     }
 }
