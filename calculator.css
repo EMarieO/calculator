@@ -44,7 +44,7 @@ body {
     content: attr(data-placeholder);
 }
 
-.TEST {
+.calcButtons {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
