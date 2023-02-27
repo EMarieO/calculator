@@ -63,11 +63,16 @@ button {
     font-size: 25px;
 }
 
-#clear, #backspace {
-    font-size: 30px;
-    width: 155px;
-    height: 60px;
+.numbBtn:hover {
+    border-color:rgb(221, 127, 3);
+    color: rgb(0, 0, 0);  
+    box-shadow: 0px 2px 3px rgb(163, 27, 241);
+    transform: translateY(-2px); 
+}
 
+.numbBtn:active {
+    box-shadow: 0px 3px 4px rgb(163, 27, 241);
+    transform: translateX(-2px);
 }
 
 .operator {
@@ -76,26 +81,53 @@ button {
     font-size: 30px;
 }
 
+.operator:hover {
+    border-color: rgb(221, 127, 3);
+    color: rgb(0, 0, 0);
+    box-shadow: 0px 2px 3px rgb(163, 27, 241);
+    transform: translateY(-2px); 
+}
+
+.operator:active {
+    box-shadow: 0px 3px 4px rgb(163, 27, 241);
+    transform: translateX(-2px);
+}
+
+#clear, #backspace {
+    font-size: 30px;
+    width: 155px;
+    height: 60px;
+    margin-bottom: 8px;
+}
+
+#clear:hover, #backspace:hover {
+    border-color: white;
+    box-shadow: 0px 2px 3px rgb(163, 27, 241);
+    transform: translateY(-2px);
+}
+
+#clear:active, #backspace:active {
+    box-shadow: 0px 3px 4px rgb(163, 27, 241);
+    transform: translateX(-2px);
+}
+
 #decimal, #equals {
     font-size: 30px;
     background-color:rgb(255, 255, 255);
 }
 
-
-button:hover {
-    border-color:rgb(221, 127, 3);
-    color: rgb(44, 0, 70);   
+#decimal:hover, #equals:hover {
+    border-color: white;
+    box-shadow: 0px 2px 3px rgb(163, 27, 241);
+    transform: translateY(-2px);
+    
 }
 
-#addition:hover, #divide:hover, #subtract:hover, #multiply:hover {
-    border-color: rgb(221, 127, 3);
-    color: rgb(255, 255, 255);
+#decimal:active, #equals:active {
+    box-shadow: 0px 3px 4px rgb(163, 27, 241);
+    transform: translateX(-2px);
 }
 
-#clear:hover, #equals:hover, #decimal:hover, #backspace:hover {
-    border-color: rgb(221, 127, 3);
-    color: rgb(44, 0, 70);
-}
 
 .footer {
     text-align: center;
