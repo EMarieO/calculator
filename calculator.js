@@ -33,6 +33,9 @@ function div(x, y) {
 }
 
 function operate() {
+    if (currentOperator === true && !current) {
+        return
+    }
     y = Number.parseFloat(current);
     x = Number.parseFloat(previous);
     
@@ -50,7 +53,7 @@ function operate() {
     } 
 
 checkResult(total);
-display.textContent = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+display.textContent = total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 console.log(total);
 current = '';
 previous = '';
@@ -137,7 +140,7 @@ function getOp(operatorVal) {
     operator = operatorVal;
     console.log(operator);
     previous = current;
-    display.textContent = previous.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    display.textContent = previous.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
     current = '';
     decimal.disabled = false;
     currentOperator = true;
